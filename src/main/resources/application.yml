@@ -1,0 +1,49 @@
+debug: false # springboot? debug (true? ? ? debug mode ???)
+management.endpoints.web.exposure.include: "*" # spring actuator? ??? ??? ???
+
+logging:
+  level:
+    com.todo.projectboard: debug # root package debug 레벨
+    org.springframework.web.servlet: debug # spring web? ??? ? ?? ??? ? ??? ?? ????? ??? request, response ??? ???
+    org.hibernate.type.descriptor.sql.BasicBinder: trace # jpa ??? ??? ? ???? ???? ??? ??
+
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/board
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    defer-datasource-initialization: true # test시 database query 자동 실행 (data.sql)
+    hibernate:
+      ddl-auto: create # application 실행시 table 생성
+#    open-in-view: false
+    show-sql: true # sql 출력
+    properties:
+      hibernate:
+        format_sql: true # jpa query 보기좋게
+        default_batch_fetch_size: 100 # jpa bulk query시 IN 쿼리 최대 갯수 (N + 1 방지)
+  h2:
+    console:
+      enabled: true # h2 database 인 메모리
+  sql:
+    init:
+      mode: always # data.sql 실행 주기
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: testdb
+
+#  datasource:
+#    url: jdbc:h2:mem:board
+#    username: sa
+#    driver-class-name: org.h2.Driver
+#  sql:
+#    init:
+#      mode: always
+#  test.database.replace: none
+
+
