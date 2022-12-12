@@ -11,8 +11,9 @@ spring:
   datasource:
     url: jdbc:h2:tcp://localhost/~/board
     username: sa
-    password:
+    password:      # password를 yml파일에 노출을 시켰기 때문에 처리 필요.
     driver-class-name: org.h2.Driver
+
   jpa:
     defer-datasource-initialization: true # test시 database query 자동 실행 (data.sql)
     hibernate:
@@ -29,6 +30,9 @@ spring:
   sql:
     init:
       mode: always # data.sql 실행 주기
+  data.rest:
+    base-path: /api
+    detection-strategy: annotated
 
 ---
 
@@ -37,13 +41,13 @@ spring:
     activate:
       on-profile: testdb
 
-#  datasource:
-#    url: jdbc:h2:mem:board
-#    username: sa
-#    driver-class-name: org.h2.Driver
-#  sql:
-#    init:
-#      mode: always
-#  test.database.replace: none
+  datasource:
+    url: jdbc:h2:mem:board;mode=mysql
+    username: sa
+    driver-class-name: org.h2.Driver
+  sql:
+    init:
+      mode: always
+  test.database.replace: none
 
 
