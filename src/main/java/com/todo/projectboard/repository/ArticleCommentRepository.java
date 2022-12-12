@@ -3,15 +3,12 @@ package com.todo.projectboard.repository;
 import com.querydsl.core.types.dsl.DateTimeExpression;
 import com.querydsl.core.types.dsl.StringExpression;
 import com.todo.projectboard.domain.ArticleComment;
-import com.todo.projectboard.domain.QArticle;
 import com.todo.projectboard.domain.QArticleComment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.data.querydsl.binding.QuerydslBindings;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
-
-import java.util.List;
 
 @RepositoryRestResource
 public interface ArticleCommentRepository extends
