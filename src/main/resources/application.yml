@@ -15,6 +15,7 @@ spring:
     driver-class-name: org.h2.Driver
 
   jpa:
+    open-in-view: false # OSIV 여부 false
     defer-datasource-initialization: true # test시 database query 자동 실행 (data.sql)
     hibernate:
       ddl-auto: create # application 실행시 table 생성

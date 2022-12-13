@@ -30,7 +30,7 @@ dependencies {
     // spring security와 thymeleaf를 같이 사용했을때의 라이브러리 반드시 security와 thymeleaf를 같이 사용할 시 추가해줘야됨
     // application 실행시 autoconfiguration에 의해서 web 접속시 자동으로 /login prefix 페이지로 이동하게 됨
     // 자세한 내용은 DefaultLoginPageGeneratingFilter.java
-    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'com.mysql:mysql-connector-j'

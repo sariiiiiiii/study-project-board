@@ -4,6 +4,8 @@ import com.querydsl.core.types.dsl.DateTimeExpression;
 import com.querydsl.core.types.dsl.StringExpression;
 import com.todo.projectboard.domain.Article;
 import com.todo.projectboard.domain.QArticle;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
@@ -16,6 +18,16 @@ public interface ArticleRepository extends
         QuerydslPredicateExecutor<Article>, // 기본적으로 Article안에 모든 필드에 대한 기본 검색기능을 추가해줌
         QuerydslBinderCustomizer<QArticle> // 선택적 검색기능으로 커스텀
 {
+
+    /**
+     * 쿼리메소드의 Containing을 넣어준것은 그냥 넣어주게 되면 exact 매치가 되기 때문 부분매치를 위해 containing 추가.
+     */
+
+    Page<Article> findByTitleContaining(String title, Pageable pageable);
+    Page<Article> findByContentContaining(String content, Pageable pageable);
+    Page<Article> findByUserAccount_UserIdContaining(String userId, Pageable pageable);
+    Page<Article> findByUserAccount_NicknameContaining(String nickname, Pageable pageable);
+    Page<Article> findByHashtag(String hashtag, Pageable pageable);
 
     @Override
     default void customize(QuerydslBindings bindings, QArticle root) {

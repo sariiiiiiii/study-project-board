@@ -11,12 +11,20 @@ import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.data.querydsl.binding.QuerydslBindings;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
+import java.util.List;
+
 @RepositoryRestResource
 public interface ArticleCommentRepository extends
         JpaRepository<ArticleComment, Long>,
         QuerydslPredicateExecutor<ArticleComment>, // 엔티티 필드에 대한 모든 검색기능 추가
         QuerydslBinderCustomizer<QArticleComment> // 선택적 검색기능으로 커스텀
 {
+
+    /**
+     * 흔히 보던 쿼리메소드가 아니다 findByArticleId가 아니라 언더바가 들어가있는 이유는
+     * ArticleComment의 연관관계를 타고 Article의 Id값을 의미한다 (객체그래프 탐색이랑 비슷하다고 생각해야 되나?)
+     */
+    List<ArticleComment> findByArticle_Id(Long articleId);
 
     @Override
     default void customize(QuerydslBindings bindings, QArticleComment root) {
