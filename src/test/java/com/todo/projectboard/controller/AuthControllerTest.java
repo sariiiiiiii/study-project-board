@@ -12,7 +12,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @DisplayName("View 컨트롤러 - 인증")
-@WebMvcTest
+@WebMvcTest(AuthControllerTest.class)
 public class AuthControllerTest {
 
     private final MockMvc mockMvc;
