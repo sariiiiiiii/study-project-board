@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Getter
-@ToString
+@ToString(callSuper = true)
 @Table(indexes = { // index걸 column 명시 (검색기능 강화)
         @Index(columnList = "content"),
         @Index(columnList = "createdAt"),
@@ -29,13 +29,19 @@ public class ArticleComment extends AuditingFields {
     @ManyToOne(optional = false)
     private Article article; // 본문 (ID)
 
-    private ArticleComment(Article article, String content) {
+    @Setter
+    @ManyToOne(optional = false)
+    public UserAccount userAccount;
+
+    private ArticleComment(Article article, UserAccount userAccount, String content) {
         this.article = article;
+        this.userAccount = userAccount;
         this.content = content;
     }
 
-    public static ArticleComment of (Article article, String content) {
-        return new ArticleComment(article, content);
+
+    public static ArticleComment of(Article article, UserAccount userAccount, String content) {
+        return new ArticleComment(article, userAccount, content);
     }
 
     @Override

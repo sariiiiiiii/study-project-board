@@ -1,10 +1,12 @@
 package com.todo.projectboard.controller;
 
+import com.todo.projectboard.config.SecurityConfig;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -12,6 +14,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @DisplayName("View 컨트롤러 - 게시글")
+@Import(SecurityConfig.class) // SecurityConfig를 열어줘야지 테스트를 할 수 있음, 현재 SecurityConfig에서 모든 페이지를 열어놨기 때문에 테스트를 통과할 수 있음
 @WebMvcTest(ArticleController.class)
 class ArticleControllerTest {
 
@@ -48,7 +51,6 @@ class ArticleControllerTest {
                 .andExpect(model().attributeExists("article")) // modelAttribute의 article란 키가 있는지 확인 (데이터를 받아올거기 때문에 넣어주자)
                 .andExpect(model().attributeExists("articleComments")) // modelAttribute의 articleComments란 키가 있는지 확인 (데이터를 받아오고 그에대한 댓글이 있는지 확인)
                 .andExpect(view().name("articles/detail"));
-
     }
 
     @Disabled("구현 중")

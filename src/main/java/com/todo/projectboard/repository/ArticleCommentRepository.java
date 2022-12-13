@@ -4,6 +4,7 @@ import com.querydsl.core.types.dsl.DateTimeExpression;
 import com.querydsl.core.types.dsl.StringExpression;
 import com.todo.projectboard.domain.ArticleComment;
 import com.todo.projectboard.domain.QArticleComment;
+import com.todo.projectboard.dto.ArticleCommentDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;

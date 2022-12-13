@@ -18,7 +18,11 @@ import java.time.LocalDateTime;
 @ToString
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
-public class AuditingFields {
+public abstract class AuditingFields {
+
+    /**
+     * AuditingFields는 혼자만의 엔티티가 아니라 다른 엔티티가 상속을 받아서 사용하는 엔티티이기 때문에 abstract 추가함
+     */
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @CreatedDate
